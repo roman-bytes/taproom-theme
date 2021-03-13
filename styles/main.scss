@@ -1,0 +1,34 @@
+.product-hover {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+
+  &:hover,
+  &:focus {
+    .buy-now {
+      display: flex;
+      background: rgba(255,255,255,0.4);
+    }
+  }
+
+  .buy-now,
+  .product-image {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+  .buy-now {
+    z-index: 1;
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    .buy-now-btn {
+      background: var(--color-black);
+      color: var(--color-white);
+      text-transform: uppercase;
+      padding: 10px 25px;
+      font-size: 1rem;
+    }
+  }
+}
