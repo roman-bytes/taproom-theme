@@ -11,6 +11,7 @@ const cssnano = require("cssnano");
 const log = require("fancy-log");
 const sourcemaps = require("gulp-sourcemaps");
 const uglify = require("gulp-uglify");
+const replace = require("rollup-plugin-replace");
 const rollup = require("gulp-rollup-lightweight");
 const babel = require("rollup-plugin-babel");
 const noderesolve = require("rollup-plugin-node-resolve");
@@ -99,8 +100,12 @@ const jsBuildTask = function (fileName) {
       globals: { jquery: "$", jQuery: "$", moment: "moment" },
       format: "umd",
       sourcemap: "inline",
+      name: 'index'
     },
     plugins: [
+      replace({
+        'process.env.NODE_ENV': JSON.stringify( 'production' )
+      }),
       babel({ runtimeHelpers: true }),
       noderesolve({
         mainFields: ["module", "main"],
